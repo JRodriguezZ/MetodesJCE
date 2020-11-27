@@ -91,31 +91,38 @@ public class Pobrama {
 
         System.out.println("Intenta desencriptar pero lanza un BadPaddingException ya que le ha enviado una contraseña que no corresponde con la que deberia ser");
 
-        System.out.println("Exercici 2");
+        System.out.println("Exercici 2 ");
+        System.out.println("-----------------");
 
         Path claus = Paths.get("clausA4.txt");
         Path textAmagat = Paths.get("textamagat");
+
+        List<String> clausList = null;
+        byte[] textEnBytes = new byte[0];
         try {
-            byte[] textEnBytes = Files.readAllBytes(textAmagat);
+            textEnBytes = Files.readAllBytes(textAmagat);
+            clausList = Files.readAllLines(claus);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try {
-            List<String> clausList = Files.readAllLines(claus);
-        } catch (IOException e) {
-            e.printStackTrace();
+        boolean valid = false;
+        while (!valid){
+            for (int i = 0; i < clausList.size() - 1; i++) {
+                try {
+                System.out.println("Intentando desencriptar texto con contraseña: " + clausList.get(i));
+                SecretKey key3 = Xifrar.passwordKeyGenerator(clausList.get(i), 128);
+
+                byte[] desencriptat = Xifrar.decryptData(key3, textEnBytes);
+
+                String textAmagatDesencriptat = new String(desencriptat);
+                System.out.println("Text amagat = " + textAmagatDesencriptat);
+                valid = true;
+                } catch (Exception e) {
+                    System.out.println("Contraseña incorrecta");
+                }
+            }
         }
-        String passwd2 = "pass";
-
-        System.out.println("Generando clave...");
-        SecretKey key3 = Xifrar.passwordKeyGenerator(passwd2,256);
-
-        byte[] textEncriptat = textAmagat.;
-
-        byte[] desencriptat = Xifrar.decryptData(key3, textEncriptat);
-
     }
-
-
 }
