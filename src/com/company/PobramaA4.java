@@ -10,9 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class Pobrama {
+public class PobramaA4 {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Exercici 1");
         System.out.println("5. ------------");
@@ -52,7 +51,7 @@ public class Pobrama {
         System.out.println("Se ha desencriptado");
 
         String secretoDesencriptado2 = new String(desencriptado2);
-        System.out.println("Resultado: " + secretoDesencriptado1);
+        System.out.println("Resultado: " + secretoDesencriptado2);
 
 
         System.out.println();
